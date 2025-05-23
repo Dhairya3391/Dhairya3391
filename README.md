@@ -1,42 +1,19 @@
-# Hi there, I'm Dhairya Adroja! 👋
+# 💫 About Me:
+I'm learning about embedded systems right now and want to contribute to open source.<br>I like computational coding and I'm good at backend.<br>I'm trying to figure out what i like and I don.
 
-Welcome to my GitHub! I'm a passionate **developer and aspiring data analyst** from Vapi, Gujarat, India. I love solving problems, learning new technologies, and building projects that make a difference.
 
-## ✨ About Me
-- 🔧 **Skills**: HTML, CSS, Bootstrap, Vanilla JavaScript, jQuery, Python (Flask, Pandas), Java, Rust, Full MERN Stack, Next.js, Functional Programming, OOP Concepts.
-- 🌍 **Location**: Vapi, Gujarat, India
-- 🚀 **Future Goal**: To become a skilled **Data Analyst** and create meaningful insights from data.
-- ❤️ **Interests**: Coding, exploring new frameworks, and automating tasks.
+## 🌐 Socials:
+[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/lame_dhairya) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:dhairyaadroja3391@gmail.com) 
 
-## 🎨 Featured Projects
-Here are some of the cool things I've built:
+# 💻 Tech Stack:
+![C](https://img.shields.io/badge/c-%2300599C.svg?style=flat&logo=c&logoColor=white) ![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=flat&logo=go&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=flat&logo=html5&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=flat&logo=javascript&logoColor=%23F7DF1E) ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=flat&logo=openjdk&logoColor=white) ![LaTeX](https://img.shields.io/badge/latex-%23008080.svg?style=flat&logo=latex&logoColor=white) ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=flat&logo=markdown&logoColor=white) ![Python](https://img.shields.io/badge/python-3670A0?style=flat&logo=python&logoColor=ffdd54) ![Bash Script](https://img.shields.io/badge/bash_script-%23121011.svg?style=flat&logo=gnu-bash&logoColor=white) ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=flat&logo=amazon-aws&logoColor=white) ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=flat&logo=heroku&logoColor=white) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=flat&logo=vercel&logoColor=white) ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=flat&logo=.net&logoColor=white) ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=flat&logo=flask&logoColor=white) ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi) ![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=flat&logo=jquery&logoColor=white) ![JWT](https://img.shields.io/badge/JWT-black?style=flat&logo=JSON%20web%20tokens) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=flat&logo=node.js&logoColor=white) ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=flat&logo=npm&logoColor=white) ![OpenCV](https://img.shields.io/badge/opencv-%23white.svg?style=flat&logo=opencv&logoColor=white) ![PNPM](https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=flat&logo=pnpm&logoColor=f69220) ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=flat&logo=SASS&logoColor=white) ![Socket.io](https://img.shields.io/badge/Socket.io-black?style=flat&logo=socket.io&badgeColor=010101) ![Svelte](https://img.shields.io/badge/svelte-%23f1413d.svg?style=flat&logo=svelte&logoColor=white) ![SvelteKit](https://img.shields.io/badge/sveltekit-%23ff3e00.svg?style=flat&logo=svelte&logoColor=white) ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=flat&logo=vite&logoColor=white) ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=flat&logo=yarn&logoColor=white) ![Nginx](https://img.shields.io/badge/nginx-%23009639.svg?style=flat&logo=nginx&logoColor=white) ![Firebase](https://img.shields.io/badge/firebase-a08021?style=flat&logo=firebase&logoColor=ffcd34) ![MicrosoftSQLServer](https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=flat&logo=microsoft%20sql%20server&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=flat&logo=mongodb&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=flat&logo=mysql&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=flat&logo=postgresql&logoColor=white) ![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=flat&logo=sqlite&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=flat&logo=Matplotlib&logoColor=black) ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=flat&logo=numpy&logoColor=white) ![Pandas](https://img.shields.io/badge/pandas-%23150458.svg?style=flat&logo=pandas&logoColor=white) ![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=flat&logo=TensorFlow&logoColor=white) ![GitLab CI](https://img.shields.io/badge/gitlab%20CI-%23181717.svg?style=flat&logo=gitlab&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=flat&logo=githubactions&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=flat&logo=github&logoColor=white) ![Babel](https://img.shields.io/badge/Babel-F9DC3e?style=flat&logo=babel&logoColor=black) ![CMake](https://img.shields.io/badge/CMake-%23008FBA.svg?style=flat&logo=cmake&logoColor=white) ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=flat&logo=eslint&logoColor=white) ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white) ![Arduino](https://img.shields.io/badge/-Arduino-00979D?style=flat&logo=Arduino&logoColor=white) ![FFmpeg](https://shields.io/badge/FFmpeg-%23171717.svg?logo=ffmpeg&style=flat&labelColor=171717&logoColor=5cb85c) ![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=flat&logo=Gradle&logoColor=white) ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=flat&logo=kubernetes&logoColor=white) ![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=flat&logo=notion&logoColor=white) ![Pi-Hole](https://img.shields.io/badge/pihole-%2396060C.svg?style=flat&logo=pi-hole&logoColor=white) ![Plex](https://img.shields.io/badge/plex-%23E5A00D.svg?style=flat&logo=plex&logoColor=white) ![Raspberry Pi](https://img.shields.io/badge/-Raspberry_Pi-C51A4A?style=flat&logo=Raspberry-Pi) ![Tampermonkey](https://img.shields.io/badge/tampermonkey-%2300485B.svg?style=flat&logo=tampermonkey&logoColor=white) ![OpenGL](https://img.shields.io/badge/OpenGL-white?logo=OpenGL&style=flat)
+# 📊 GitHub Stats:
+![](https://github-readme-stats.vercel.app/api?username=Dhairya3391&theme=rose_pine&hide_border=false&include_all_commits=false&count_private=true)<br/>
+![](https://nirzak-streak-stats.vercel.app/?user=Dhairya3391&theme=rose_pine&hide_border=false)<br/>
+![](https://github-readme-stats.vercel.app/api/top-langs/?username=Dhairya3391&theme=rose_pine&hide_border=false&include_all_commits=false&count_private=true&layout=compact)
 
-### 1. [Game Controller Backend](https://github.com/Dhairya3391/game-controller-backend)
-A Flask-based backend to simulate game controllers, leveraging vJoy for seamless retro gaming experiences.
-
-### 2. [AES Encryption Tool](https://github.com/Dhairya3391/aes-encryption-tool)
-A Python-based tool implementing AES encryption to secure data with an intuitive interface.
-
-### 3. [Automatic Wallpaper Setter](https://github.com/Dhairya3391/automatic-wallpaper-setter)
-A cross-language project (Rust, Python, and Shell) to automatically set stunning wallpapers on desktop and mobile devices.
-
-### 4. [Matrix Rain Shell Script](https://github.com/Dhairya3391/matrix-rain)
-A minimalistic shell script that generates a "Matrix rain" effect in the terminal.
-
-Explore more in my repositories! 🔍
-
-## 🏢 Portfolio
-Check out my projects and work on my [Portfolio Website](https://portfolio-qipfl71pt-dhairya3391s-projects.vercel.app/).
-
-## 📧 Contact Me
-- **Email**: [dhairyaadroja3391@gmail.com](mailto:dhairyaadroja3391@gmail.com)
-- **Instagram**: [lame_dhairya](https://www.instagram.com/lame_dhairya)
-- **GitHub**: [Dhairya3391](https://github.com/Dhairya3391)
-
-## 🔗 Let's Connect
-Feel free to reach out to me for collaborations, project discussions, or just to say hi! I'm always up for connecting with like-minded people.
-
----
+### 🔝 Top Contributed Repo
+![](https://github-contributor-stats.vercel.app/api?username=Dhairya3391&limit=5&theme=gotham&combine_all_yearly_contributions=true)
 
 ### 🖌️ Fun Fact
 "The best way to predict the future is to invent it."
