@@ -58,8 +58,12 @@ jobs:
           if not quote:
               quote = "Code is like humor. When you have to explain it, it's bad. – Cory House"
 
-          # Insert the quote at the placeholder
-          updated_content = re.sub(r'<!--QUOTE_PLACEHOLDER-->', quote, updated_content)
+          # Insert the quote at the placeholder (replace the whole <i>...</i> line)
+          updated_content = re.sub(
+              r'<i><!--QUOTE_PLACEHOLDER--></i>',
+              f'<i>{quote}</i>',
+              updated_content
+          )
 
           # Write the updated content back
           with open('README.md', 'w') as file:
