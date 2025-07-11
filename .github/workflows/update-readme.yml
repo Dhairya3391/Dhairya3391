@@ -1,0 +1,140 @@
+name: Update README with Dynamic Content
+
+on:
+  schedule:
+    # Runs every day at 6:00 AM UTC
+    - cron: "0 6 * * *"
+  push:
+    branches: [main, master]
+  workflow_dispatch: # Allows manual triggering
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests python-dateutil
+
+      - name: Update README with current date and dynamic quote
+        run: |
+          python << 'EOF'
+          import os
+          from datetime import datetime
+          import requests
+          import re
+
+          # Read the current README
+          with open('README.md', 'r') as file:
+              content = file.read()
+
+          # Update the date placeholder
+          current_date = datetime.now().strftime('%B %d, %Y')
+          updated_content = content.replace('PLACEHOLDER_DATE', current_date)
+
+          # Fetch a random quote from ZenQuotes API
+          quote = None
+          try:
+              resp = requests.get('https://zenquotes.io/api/random')
+              if resp.status_code == 200:
+                  data = resp.json()
+                  quote = f'{data[0]["q"]} — {data[0]["a"]}'
+          except Exception as e:
+              quote = None
+
+          # Fallback static quote
+          if not quote:
+              quote = "Code is like humor. When you have to explain it, it's bad. – Cory House"
+
+          # Insert the quote at the placeholder
+          updated_content = re.sub(r'<!--QUOTE_PLACEHOLDER-->', quote, updated_content)
+
+          # Write the updated content back
+          with open('README.md', 'w') as file:
+              file.write(updated_content)
+
+          print(f"✅ README updated with date: {current_date} and quote: {quote}")
+          EOF
+
+      - name: Generate contribution summary
+        run: |
+          python << 'EOF'
+          import requests
+          import json
+
+          # Get GitHub stats (you can expand this)
+          username = "Dhairya3391"
+
+          try:
+              # Get user info
+              user_response = requests.get(f"https://api.github.com/users/{username}")
+              user_data = user_response.json()
+              
+              # Get repositories
+              repos_response = requests.get(f"https://api.github.com/users/{username}/repos?sort=updated&per_page=5")
+              repos_data = repos_response.json()
+              
+              print("📊 GitHub Activity Summary:")
+              print(f"   • Public repositories: {user_data.get('public_repos', 'N/A')}")
+              print(f"   • Followers: {user_data.get('followers', 'N/A')}")
+              print(f"   • Following: {user_data.get('following', 'N/A')}")
+              
+              print("\n🔥 Recently Updated Repositories:")
+              for repo in repos_data[:3]:
+                  print(f"   • {repo['name']} ({repo['language'] or 'Mixed'})")
+                  
+          except Exception as e:
+              print(f"⚠️  Could not fetch GitHub stats: {e}")
+          EOF
+
+      - name: Add dynamic weather info (optional)
+        run: |
+          python << 'EOF'
+          import requests
+
+          try:
+              # Get weather for Gujarat, India (you can customize this)
+              # Note: You'd need to add WEATHER_API_KEY to your repository secrets
+              # weather_response = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q=Gujarat,IN&appid={os.environ.get('WEATHER_API_KEY')}")
+              # weather_data = weather_response.json()
+              
+              # For now, just add a simple location-based greeting
+              print("🌍 Coding from Gujarat, India ✨")
+              
+          except Exception as e:
+              print(f"⚠️  Could not fetch weather: {e}")
+          EOF
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          # Check if there are any changes
+          if git diff --quiet; then
+            echo "No changes to commit"
+          else
+            git add README.md
+            git commit -m "🤖 Auto-update README with dynamic content $(date +'%Y-%m-%d %H:%M:%S')"
+            git push
+            echo "✅ README updated and pushed!"
+          fi
+
+      - name: Create deployment status
+        run: |
+          echo "🚀 README Update Complete!"
+          echo "   • Date: $(date)"
+          echo "   • Workflow: ${{ github.workflow }}"
+          echo "   • Repository: ${{ github.repository }}"
