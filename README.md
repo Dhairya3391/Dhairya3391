@@ -193,7 +193,7 @@ This week’s goal: <b>Deploy a new cloud-connected device</b>
 <!-- Dynamic Quote Placeholder -->
 <p align="center">
   <b>💡 Quote of the Day:</b><br/>
-  <i><!--QUOTE_PLACEHOLDER--></i>
+  <i>Do not regret the past. Look to the future. — Soyen Shaku</i>
 </p>
 
 ---
@@ -202,4 +202,4 @@ This week’s goal: <b>Deploy a new cloud-connected device</b>
   <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=14&duration=4000&pause=1000&color=A7C7E7&center=true&vCenter=true&width=500&lines=Thanks+for+visiting+my+profile!;Let's+build+something+awesome+together+%F0%9F%9A%80" alt="Footer typing SVG" />
 </p>
 
-<!-- Last updated: PLACEHOLDER_DATE -->
+<!-- Last updated: July 11, 2025 -->
