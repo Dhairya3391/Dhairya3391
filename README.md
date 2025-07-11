@@ -138,7 +138,6 @@ fun_fact: I debug hardware with the same patience I debug async code
 
 ## 📈 Current Focus
 
-- 🔗 Building IoT solutions with cloud integration
 - 🚀 Exploring edge computing architectures
 - 📡 Developing real-time communication protocols
 - 🛠️ Contributing to open-source embedded projects
