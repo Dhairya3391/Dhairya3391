@@ -58,11 +58,12 @@ jobs:
           if not quote:
               quote = "Code is like humor. When you have to explain it, it's bad. – Cory House"
 
-          # Insert the quote at the placeholder (replace the whole <i>...</i> line)
+          # Insert the quote between <!--QUOTE_START--> and <!--QUOTE_END-->
           updated_content = re.sub(
-              r'<i><!--QUOTE_PLACEHOLDER--></i>',
-              f'<i>{quote}</i>',
-              updated_content
+              r'<!--QUOTE_START-->.*?<!--QUOTE_END-->',
+              f'<!--QUOTE_START--><i>{quote}</i><!--QUOTE_END-->',
+              updated_content,
+              flags=re.DOTALL
           )
 
           # Write the updated content back
