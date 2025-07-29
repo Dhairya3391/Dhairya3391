@@ -68,7 +68,12 @@ fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
 
 async def main() -> None:
     """Generate all badges"""
-    access_token = os.getenv("ACCESS_TOKEN") or os.getenv("GITHUB_TOKEN")
+    access_token = os.getenv("ACCESS_TOKEN")
+    if not access_token:
+        access_token = os.getenv("GITHUB_TOKEN")
+        print("⚠️  Using GITHUB_TOKEN - limited permissions may cause incomplete data")
+        print("💡 For full stats, create a Personal Access Token and set it as ACCESS_TOKEN secret")
+    
     if not access_token:
         raise Exception("A personal access token is required!")
     
@@ -77,6 +82,10 @@ async def main() -> None:
     exclude_repos = ({x.strip() for x in exclude_repos.split(",")} if exclude_repos else None)
     exclude_langs = os.getenv("EXCLUDED_LANGS")
     exclude_langs = ({x.strip() for x in exclude_langs.split(",")} if exclude_langs else None)
+    
+    print(f"🔍 Generating stats for user: {user}")
+    print(f"🔍 Excluded repos: {exclude_repos}")
+    print(f"🔍 Excluded languages: {exclude_langs}")
     
     async with aiohttp.ClientSession() as session:
         s = Stats(user, access_token, session, exclude_repos=exclude_repos, exclude_langs=exclude_langs)

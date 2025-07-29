@@ -12,11 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      metadata: read
+      actions: read
 
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-python@v4
         with:
@@ -27,10 +30,15 @@ jobs:
 
       - name: Generate stats
         env:
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_ACTOR: ${{ github.actor }}
           EXCLUDED: "Dhairya3391/Dhairya3391"
-        run: python generate_images.py
+          EXCLUDED_LANGS: ""
+        run: |
+          echo "🔍 Debug: Generating stats for user: $GITHUB_ACTOR"
+          echo "🔍 Debug: Excluded repos: $EXCLUDED"
+          python generate_images.py
 
       - name: Commit changes
         run: |
