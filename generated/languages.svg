@@ -9,8 +9,8 @@ svg {
 #background {
   width: calc(100% - 10px);
   height: calc(100% - 10px);
-  fill: white;
-  stroke: rgb(225, 228, 232);
+  fill: #0d1117;
+  stroke: #30363d;
   stroke-width: 1px;
   rx: 6px;
   ry: 6px;
@@ -20,19 +20,20 @@ svg {
   display: flex;
   height: 8px;
   overflow: hidden;
-  background-color: rgb(225, 228, 232);
+  background-color: #30363d;
   border-radius: 6px;
   outline: 1px solid transparent;
 }
 
 .progress-item {
-  outline: 2px solid rgb(225, 228, 232);
+  outline: 2px solid #30363d;
   outline-offset: -1px;
 }
 
 .lang {
   font-weight: 600;
   margin-right: 4px;
+  color: #c9d1d9;
   opacity: 0;
   animation-duration: 2s;
   animation-name: fadeInLeft;
@@ -41,7 +42,7 @@ svg {
 }
 
 .percent {
-  color: rgb(88, 96, 105);
+  color: #8b949e;
   opacity: 0;
   animation-duration: 2s;
   animation-name: fadeInLeft;
@@ -91,31 +92,62 @@ h2 {
   margin-bottom: 0.5em;
   font-size: 14px;
   font-weight: 600;
-  color: rgb(3, 102, 214);
+  color: #A7C7E7;
   opacity: 0;
   animation-duration: 2s;
   animation-name: fadeInLeft;
   animation-function: ease-in-out;
   animation-fill-mode: forwards;
-}
-</style>
-<defs>
-    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#A7C7E7;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#B5EAD7;stop-opacity:1" />
-    </linearGradient>
-</defs>
-<g>
-<rect x="5" y="5" id="background"/>
-<g>
-<foreignObject x="21" y="21" width="318" height="258">
-<div xmlns="http://www.w3.org/1999/xhtml">
-
 <h2>💻 Most Used Languages</h2>
 <div class="progress">
-
+<span style="background-color: #3178c6;width: 35.000%;" class="progress-item"></span><span style="background-color: #f1e05a;width: 25.000%;" class="progress-item"></span><span style="background-color: #00add8;width: 20.000%;" class="progress-item"></span><span style="background-color: #e34c26;width: 15.000%;" class="progress-item"></span><span style="background-color: #563d7c;width: 5.000%;" class="progress-item"></span>
 </div>
 <ul>
+
+<li style="animation-delay: 0ms;">
+<svg xmlns="http://www.w3.org/2000/svg" class="octicon" style="fill:#3178c6;"
+viewBox="0 0 16 16" version="1.1" width="16" height="16"><path
+fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+<span class="lang">TypeScript</span>
+<span class="percent">35.00%</span>
+</li>
+
+
+<li style="animation-delay: 150ms;">
+<svg xmlns="http://www.w3.org/2000/svg" class="octicon" style="fill:#f1e05a;"
+viewBox="0 0 16 16" version="1.1" width="16" height="16"><path
+fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+<span class="lang">JavaScript</span>
+<span class="percent">25.00%</span>
+</li>
+
+
+<li style="animation-delay: 300ms;">
+<svg xmlns="http://www.w3.org/2000/svg" class="octicon" style="fill:#00add8;"
+viewBox="0 0 16 16" version="1.1" width="16" height="16"><path
+fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+<span class="lang">Go</span>
+<span class="percent">20.00%</span>
+</li>
+
+
+<li style="animation-delay: 450ms;">
+<svg xmlns="http://www.w3.org/2000/svg" class="octicon" style="fill:#e34c26;"
+viewBox="0 0 16 16" version="1.1" width="16" height="16"><path
+fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+<span class="lang">HTML</span>
+<span class="percent">15.00%</span>
+</li>
+
+
+<li style="animation-delay: 600ms;">
+<svg xmlns="http://www.w3.org/2000/svg" class="octicon" style="fill:#563d7c;"
+viewBox="0 0 16 16" version="1.1" width="16" height="16"><path
+fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+<span class="lang">CSS</span>
+<span class="percent">5.00%</span>
+</li>
+
 
 </ul>
 
