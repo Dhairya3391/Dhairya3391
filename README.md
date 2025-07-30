@@ -17,7 +17,7 @@
 <p align="center">
   <strong><a href="https://pow.dhairyaadroja3391.workers.dev/">Website</a></strong> |
   <strong><a href="https://x.com/AdrojaDhairya1">Twitter</a></strong> |
-  <strong><a href="https://linkedin.com/in/dhiaryaadroja">LinkedIn</a></strong>
+  <strong><a href="https://linkedin.com/in/adrojadhairya">LinkedIn</a></strong>
 </p>
 
 <p align="center">
