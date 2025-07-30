@@ -96,10 +96,9 @@ class Queries(object):
         return dict()
 
     @staticmethod
-    def repos_overview(contrib_cursor: str = "", owned_cursor: str = "") -> str:
+    def repos_overview(owned_cursor: str = "") -> str:
         """
-        :param contrib_cursor: optional cursor to continue pagination
-        :param owned_cursor: optional cursor to continue pagination  
+        :param owned_cursor: optional cursor to continue pagination
         :return: GraphQL query with repository overview data
         """
         return f"""{{
@@ -117,7 +116,7 @@ class Queries(object):
       totalRepositoriesWithContributedPullRequestReviews
       totalRepositoriesWithContributedPullRequests
     }}
-    repositoriesContributedTo(first: 100, includeUserRepositories: false{contrib_cursor}) {{
+    repositories(first: 100, orderBy: {{field: STARGAZERS, direction: DESC}}{owned_cursor}) {{
       pageInfo {{
         hasNextPage
         endCursor
@@ -126,29 +125,7 @@ class Queries(object):
         nameWithOwner
         name
         owner {{ login }}
-        stargazerCount
-        forkCount
-        primaryLanguage {{ name }}
-        languages(first: 10, orderBy: {{field: SIZE, direction: DESC}}) {{
-          edges {{
-            size
-            node {{
-              name
-              color
-            }}
-          }}
-        }}
-      }}
-    }}
-    repositories(first: 100, includeUserRepositories: true, orderBy: {{field: STARGAZERS, direction: DESC}}{owned_cursor}) {{
-      pageInfo {{
-        hasNextPage
-        endCursor
-      }}
-      nodes {{
-        nameWithOwner
-        name
-        owner {{ login }}
+        isFork
         stargazerCount
         forkCount
         primaryLanguage {{ name }}
@@ -203,6 +180,7 @@ class Stats(object):
         session: aiohttp.ClientSession,
         exclude_repos: Optional[Set] = None,
         exclude_langs: Optional[Set] = None,
+        exclude_forks: bool = False,
     ):
         self.username = username
         self._stargazers = None
@@ -211,18 +189,20 @@ class Stats(object):
         self._lines_changed = None
         self._views = None
         self._repos = None
+        self._repos_lock = asyncio.Lock()
         self._languages = None
         self._name = None
         self.queries = Queries(username, access_token, session)
 
         self._exclude_repos = set() if exclude_repos is None else exclude_repos
         self._exclude_langs = set() if exclude_langs is None else exclude_langs
+        self._exclude_forks = exclude_forks
 
     async def to_dict(self) -> Dict:
         """
         :return: summary of all available statistics
         """
-        return {
+        return {{
             "name": await self.name,
             "stargazers": await self.stargazers,
             "forks": await self.forks,
@@ -231,7 +211,7 @@ class Stats(object):
             "views": await self.views,
             "repos": len(await self.repos),
             "languages": await self.languages,
-        }
+        }}
 
     @property
     async def name(self) -> str:
@@ -278,17 +258,17 @@ class Stats(object):
             return self._total_contributions
 
         from datetime import datetime
-        start_date = f"{datetime.now().year}-01-01"
+        start_date = f"{{datetime.now().year}}-01-01"
         query = self.queries.contributions_calendar(self.username, start_date)
         result = await self.queries.query(query)
-        
+
         user_data = result.get("data", {}).get("user")
         if user_data:
             contributions_collection = user_data.get("contributionsCollection", {})
             self._total_contributions = contributions_collection.get("totalCommitContributions", 0)
         else:
             self._total_contributions = 0
-            
+
         return self._total_contributions
 
     @property
@@ -298,7 +278,7 @@ class Stats(object):
         """
         if self._lines_changed is not None:
             return self._lines_changed
-        
+
         # This is a simplified implementation - actual line counting would require
         # more complex GraphQL queries or REST API calls
         self._lines_changed = (0, 0)
@@ -311,7 +291,7 @@ class Stats(object):
         """
         if self._views is not None:
             return self._views
-        
+
         # This requires owner access to repositories
         self._views = 0
         return self._views
@@ -321,53 +301,42 @@ class Stats(object):
         """
         :return: list of user's repositories with statistics
         """
-        if self._repos is not None:
+        async with self._repos_lock:
+            if self._repos is not None:
+                return self._repos
+
+            self._repos = []
+
+            owned_cursor = ""
+
+            while True:
+                query = self.queries.repos_overview(owned_cursor)
+                result = await self.queries.query(query)
+
+                if "data" not in result or "viewer" not in result["data"]:
+                    break
+
+                viewer = result["data"]["viewer"]
+
+                # Process owned repositories
+                owned_repos = viewer.get("repositories", {})
+                for repo in owned_repos.get("nodes", []):
+                    if repo.get("nameWithOwner") not in self._exclude_repos:
+                        if not (self._exclude_forks and repo.get("isFork")):
+                            self._repos.append(repo)
+
+                # Check pagination
+                owned_has_next = owned_repos.get("pageInfo", {}).get("hasNextPage", False)
+
+                if owned_has_next:
+                    owned_cursor = f', after: "{{owned_repos["pageInfo"]["endCursor"]}}"'
+                else:
+                    owned_cursor = ""
+
+                if not owned_has_next:
+                    break
+
             return self._repos
-
-        self._repos = []
-        
-        contrib_cursor = ""
-        owned_cursor = ""
-        
-        while True:
-            query = self.queries.repos_overview(contrib_cursor, owned_cursor)
-            result = await self.queries.query(query)
-            
-            if "data" not in result or "viewer" not in result["data"]:
-                break
-                
-            viewer = result["data"]["viewer"]
-            
-            # Process contributed repositories
-            contrib_repos = viewer.get("repositoriesContributedTo", {})
-            for repo in contrib_repos.get("nodes", []):
-                if repo.get("nameWithOwner") not in self._exclude_repos:
-                    self._repos.append(repo)
-            
-            # Process owned repositories  
-            owned_repos = viewer.get("repositories", {})
-            for repo in owned_repos.get("nodes", []):
-                if repo.get("nameWithOwner") not in self._exclude_repos:
-                    self._repos.append(repo)
-            
-            # Check pagination
-            contrib_has_next = contrib_repos.get("pageInfo", {}).get("hasNextPage", False)
-            owned_has_next = owned_repos.get("pageInfo", {}).get("hasNextPage", False)
-            
-            if contrib_has_next:
-                contrib_cursor = f', after: "{contrib_repos["pageInfo"]["endCursor"]}"'
-            else:
-                contrib_cursor = ""
-                
-            if owned_has_next:
-                owned_cursor = f', after: "{owned_repos["pageInfo"]["endCursor"]}"'
-            else:
-                owned_cursor = ""
-                
-            if not contrib_has_next and not owned_has_next:
-                break
-
-        return self._repos
 
     @property
     async def languages(self) -> Dict:
@@ -379,28 +348,33 @@ class Stats(object):
 
         repos = await self.repos
         language_totals = {}
-        
+
         for repo in repos:
+            if repo["nameWithOwner"] in self._exclude_repos:
+                continue
+
             languages = repo.get("languages", {}).get("edges", [])
-            for lang_edge in languages:
-                lang_node = lang_edge.get("node", {})
-                lang_name = lang_node.get("name")
-                lang_color = lang_node.get("color")
-                lang_size = lang_edge.get("size", 0)
-                
-                if lang_name and lang_name not in self._exclude_langs:
-                    if lang_name not in language_totals:
-                        language_totals[lang_name] = {
-                            "size": 0,
-                            "color": lang_color
-                        }
-                    language_totals[lang_name]["size"] += lang_size
+            for lang_data in languages:
+                size = lang_data.get("size", 0)
+                name = lang_data.get("node", {}).get("name")
+                color = lang_data.get("node", {}).get("color")
+
+                if name in self._exclude_langs:
+                    continue
+
+                if name not in language_totals:
+                    language_totals[name] = {
+                        "size": size,
+                        "color": color
+                    }
+                else:
+                    language_totals[name]["size"] += size
 
         # Calculate percentages
-        total_size = sum(lang["size"] for lang in language_totals.values())
+        total_size = sum(lang_data["size"] for lang_data in language_totals.values())
         if total_size > 0:
-            for lang_name, lang_data in language_totals.items():
-                lang_data["prop"] = (lang_data["size"] / total_size) * 100
+            for lang, data in language_totals.items():
+                data["prop"] = data["size"] / total_size * 100
 
         self._languages = language_totals
         return self._languages

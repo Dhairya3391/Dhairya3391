@@ -294,22 +294,24 @@ async def main() -> None:
         access_token = os.getenv("GITHUB_TOKEN")
         print("⚠️  Using GITHUB_TOKEN - limited permissions may cause incomplete data")
         print("💡 For full stats, create a Personal Access Token and set it as ACCESS_TOKEN secret")
-    
+
     if not access_token:
         raise Exception("A personal access token is required!")
-    
+
     user = os.getenv("GITHUB_ACTOR", "Dhairya3391")
-    exclude_repos = os.getenv("EXCLUDED")
+    exclude_repos = os.getenv("EXCLUDED_REPOS")
     exclude_repos = ({x.strip() for x in exclude_repos.split(",")} if exclude_repos else None)
     exclude_langs = os.getenv("EXCLUDED_LANGS")
     exclude_langs = ({x.strip() for x in exclude_langs.split(",")} if exclude_langs else None)
-    
+    exclude_forks = os.getenv("EXCLUDE_FORKS", "False").lower() in ("true", "1", "t")
+
     print(f"🔍 Generating stats for user: {user}")
     print(f"🔍 Excluded repos: {exclude_repos}")
     print(f"🔍 Excluded languages: {exclude_langs}")
-    
+    print(f"🔍 Exclude forks: {exclude_forks}")
+
     async with aiohttp.ClientSession() as session:
-        s = Stats(user, access_token, session, exclude_repos=exclude_repos, exclude_langs=exclude_langs)
+        s = Stats(user, access_token, session, exclude_repos=exclude_repos, exclude_langs=exclude_langs, exclude_forks=exclude_forks)
         await asyncio.gather(generate_languages(s), generate_overview(s))
 
 
