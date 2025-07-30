@@ -1,13 +1,13 @@
 <p align="center">
   <a href="https://pow.dhairyaadroja3391.workers.dev/">
-    <img src="banner.jpeg" alt="Banner" width="50%">
+    <img src="banner.webp" alt="Banner" width="50%">
   </a>
 </p>
 
 <h1 align="center">hi, i'm <a href="https://pow.dhairyaadroja3391.workers.dev/">Dhairya</a>!</h1>
 <p align="center">
   <a href="https://pow.dhairyaadroja3391.workers.dev/">
-    <img src="profile.jpeg" alt="Dhairya3391">
+    <img src="profile.webp" alt="Dhairya3391" width="130">
   </a>
 </p>
 <h3 align="center">welcome to my GitHub profile :3</h3>
