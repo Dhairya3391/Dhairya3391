@@ -19,7 +19,3 @@
   <strong><a href="https://x.com/AdrojaDhairya1">Twitter</a></strong> |
   <strong><a href="https://linkedin.com/in/adrojadhairya">LinkedIn</a></strong>
 </p>
-
-<p align="center">
-  <a href="https://github.com/Dhairya3391"><img src="https://github-readme-stats.vercel.app/api?username=Dhairya3391&hide_border=true&show_icons=true" alt="Dhairya3391's github stats"></a>
-</p>
