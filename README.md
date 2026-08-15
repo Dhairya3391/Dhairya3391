@@ -15,7 +15,7 @@
 <p align="center">no noise, just work.</p>
 
 <p align="center">
-  <strong><a href="https://dhairya.codes/">Website</a></strong> |
-  <strong><a href="https://x.com/AdrojaDhairya1">Twitter</a></strong> |
+  <strong><a href="https://dhairya.codes/">Portfolio</a></strong> |
+  <strong><a href="https://x.com/AdrojaDhairya1">X</a></strong> |
   <strong><a href="https://linkedin.com/in/adrojadhairya">LinkedIn</a></strong>
 </p>
